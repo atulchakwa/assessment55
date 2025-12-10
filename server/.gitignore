@@ -1,0 +1,53 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+.out/
+.next/
+.vercel/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Logs
+logs/
+*.log
+logs/*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.cache
+.cache/
+*.swp
+
+# TypeScript
+*.tsbuildinfo
+
+# Coverage
+coverage/
+
+# Server specific
+uploads/
+public/uploads/
+
+# React specific
+*.map
+
