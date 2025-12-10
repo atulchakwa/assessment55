@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminContacts = () => {
     const [contacts, setContacts] = useState([]);
 
     useEffect(() => {
         const fetchContacts = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/contact');
+                const res = await axios.get(`${API_URL}/api/contact`);
                 setContacts(res.data);
             } catch (err) {
                 console.error(err);

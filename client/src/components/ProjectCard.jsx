@@ -1,11 +1,13 @@
 import React from 'react';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const ProjectCard = ({ project }) => {
     return (
         <div className="card">
             <div style={{ height: '220px', overflow: 'hidden' }}>
                 <img
-                    src={project.image.startsWith('http') ? project.image : `http://localhost:5000${project.image}`}
+                    src={project.image.startsWith('http') ? project.image : `${API_URL}${project.image}`}
                     alt={project.name}
                     style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s' }}
                 />

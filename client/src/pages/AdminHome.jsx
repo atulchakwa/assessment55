@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminHome = () => {
     const [stats, setStats] = useState({
         projects: 0,
@@ -14,10 +16,10 @@ const AdminHome = () => {
         const fetchStats = async () => {
             try {
                 const [projectsRes, clientsRes, contactsRes, subscribersRes] = await Promise.all([
-                    axios.get('http://localhost:5000/api/projects'),
-                    axios.get('http://localhost:5000/api/clients'),
-                    axios.get('http://localhost:5000/api/contact'),
-                    axios.get('http://localhost:5000/api/subscribers')
+                    axios.get(`${API_URL}/api/projects`),
+                    axios.get(`${API_URL}/api/clients`),
+                    axios.get(`${API_URL}/api/contact`),
+                    axios.get(`${API_URL}/api/subscribers`)
                 ]);
 
                 setStats({

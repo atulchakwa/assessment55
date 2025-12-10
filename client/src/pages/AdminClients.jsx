@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import ImageCropper from '../components/ImageCropper';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminClients = () => {
     const [clients, setClients] = useState([]);
     const [formData, setFormData] = useState({
@@ -23,7 +25,7 @@ const AdminClients = () => {
 
     const fetchClients = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/clients');
+            const res = await axios.get(`${API_URL}/api/clients`);
             setClients(res.data);
         } catch (err) {
             console.error('Fetch Error:', err);
@@ -116,7 +118,7 @@ const AdminClients = () => {
         data.append('image', formData.image);
 
         try {
-            await axios.post('http://localhost:5000/api/clients', data);
+            await axios.post(`${API_URL}/api/clients`, data);
             alert('Client Added Successfully!');
             setFormData({
                 name: '',
@@ -136,7 +138,7 @@ const AdminClients = () => {
     const handleDelete = async (id) => {
         if (!window.confirm('Are you sure you want to delete this client?')) return;
         try {
-            await axios.delete(`http://localhost:5000/api/clients/${id}`);
+            await axios.delete(`${API_URL}/api/clients/${id}`);
             alert('Client deleted successfully');
             fetchClients();
         } catch (err) {
@@ -201,7 +203,7 @@ const AdminClients = () => {
                                         c.image && typeof c.image === 'string'
                                             ? c.image.startsWith('http')
                                                 ? c.image
-                                                : `http://localhost:5000${c.image}`
+                                                : `${API_URL}${c.image}`
                                             : 'https://via.placeholder.com/128?text=Client';
 
                                     return (

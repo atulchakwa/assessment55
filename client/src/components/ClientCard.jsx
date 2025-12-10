@@ -1,5 +1,7 @@
 import React from 'react';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const ClientCard = ({ client }) => {
     return (
         <div className="card" style={{ padding: '2rem', textAlign: 'center', position: 'relative' }}>
@@ -9,7 +11,7 @@ const ClientCard = ({ client }) => {
                 "
             </div>
             <img
-                src={client.image.startsWith('http') ? client.image : `http://localhost:5000${client.image}`}
+                src={client.image.startsWith('http') ? client.image : `${API_URL}${client.image}`}
                 alt={client.name}
                 style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1.5rem', border: '4px solid white', boxShadow: 'var(--shadow-md)' }}
             />

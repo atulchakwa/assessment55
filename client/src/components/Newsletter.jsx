@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Newsletter = () => {
     const [email, setEmail] = useState('');
 
@@ -23,7 +25,7 @@ const Newsletter = () => {
         if (!validate()) return;
 
         try {
-            await axios.post('http://localhost:5000/api/subscribe', { email });
+            await axios.post(`${API_URL}/api/subscribe`, { email });
             alert('Subscribed Successfully!');
             setEmail('');
         } catch (err) {

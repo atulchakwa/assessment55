@@ -8,6 +8,8 @@ import ClientCard from '../components/ClientCard';
 import ContactForm from '../components/ContactForm';
 import Newsletter from '../components/Newsletter';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const LandingPage = () => {
     const [projects, setProjects] = useState(dummyProjects);
     const [clients, setClients] = useState(dummyClients);
@@ -15,11 +17,11 @@ const LandingPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const projectsRes = await axios.get('http://localhost:5000/api/projects');
+                const projectsRes = await axios.get(`${API_URL}/api/projects`);
                 if (projectsRes.data && projectsRes.data.length > 0) {
                     setProjects(projectsRes.data);
                 }
-                const clientsRes = await axios.get('http://localhost:5000/api/clients');
+                const clientsRes = await axios.get(`${API_URL}/api/clients`);
                 if (clientsRes.data && clientsRes.data.length > 0) {
                     setClients(clientsRes.data);
                 }

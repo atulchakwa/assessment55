@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import ImageCropper from '../components/ImageCropper';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminProjects = () => {
     const [projects, setProjects] = useState([]);
     const [formData, setFormData] = useState({
@@ -22,7 +24,7 @@ const AdminProjects = () => {
 
     const fetchProjects = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/projects');
+            const res = await axios.get(`${API_URL}/api/projects`);
             setProjects(res.data);
         } catch (err) {
             console.error('Fetch Error:', err);
@@ -104,7 +106,7 @@ const AdminProjects = () => {
         data.append('image', formData.image);
 
         try {
-            await axios.post('http://localhost:5000/api/projects', data);
+            await axios.post(`${API_URL}/api/projects`, data);
             alert('Project Added Successfully!');
             setFormData({ name: '', description: '', image: null });
 
@@ -121,7 +123,7 @@ const AdminProjects = () => {
     const handleDelete = async (id) => {
         if (!window.confirm('Are you sure you want to delete this project?')) return;
         try {
-            await axios.delete(`http://localhost:5000/api/projects/${id}`);
+            await axios.delete(`${API_URL}/api/projects/${id}`);
             alert('Project deleted successfully');
             fetchProjects();
         } catch (err) {
@@ -186,7 +188,7 @@ const AdminProjects = () => {
                                         p.image && typeof p.image === 'string'
                                             ? p.image.startsWith('http')
                                                 ? p.image
-                                                : `http://localhost:5000${p.image}`
+                                                : `${API_URL}${p.image}`
                                             : 'https://via.placeholder.com/450x350?text=No+Image';
 
                                     return (
